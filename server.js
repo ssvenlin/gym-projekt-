@@ -16,7 +16,8 @@ app.listen(HTTP_PORT, () => {
 app.use(express.static('public'))
 
 app.get("/gym", (req, res, next) => {
-    var sql = "select * from users"
+    //var sql = "select * from users"
+    var sql = "SELECT users.firstname, practice.name, practice.result FROM users INNER JOIN user_practice on user_practice.user_id = users.id inner join practice on practice.id = user_practice.id"
     var params = []
     db.all(sql, params, (err, rows) => {
         if (err) {
