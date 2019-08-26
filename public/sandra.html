@@ -1,0 +1,65 @@
+<html>
+
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <div id="resultat"></div>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script>
+         $.ajax({
+                //type: "POST",
+                url: "http://localhost:8000/gym",
+                dataType: "json",
+                success: function (result, status, xhr) {
+                    var html = ""
+                    for(var i = 0; i < result.data.length; i++){
+                        console.log(result.data[i]);
+                        html += "<th>"+result.data[i].firstname+"</th>"+"<th>"+result.data[i].name+"</th>"+"<th>"+result.data[i].result+"</th>"
+                    }
+                    var string = "<table>";
+                    data.data.forEach(gym => {
+                        string +=
+                            "<tr><td>" +
+                            gym.firstname +
+                            "</td><td>" +
+                            gym.name +
+                            "</td></tr>";
+                            gym.result +
+                            "</td></tr>";
+                        console.log(car.make);
+                    });
+                    string += "</table>";
+                    document.getElementById("resultat").innerHTML = string;
+                  document.getElementById("resultat").innerHTML = html
+                },
+                error: function (xhr, status, error) {
+                    alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                }
+            });
+        
+   
+                // Send a GET request
+ /*               
+                const listUsers = async () => {
+    try {
+        const res = await axios.get('http://localhost:8000/sandra.html');
+        console.log(res.data.data); 
+    } catch (err) {
+        console.error(err);
+    }
+};
+listUsers();
+             */   
+                </script>
+    </body>
+</html>
