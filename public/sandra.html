@@ -10,6 +10,20 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
+        <style>
+            table {
+            border-collapse: collapse;
+            width: 100%;
+            }
+
+            th, td {
+            text-align: left;
+            padding: 8px;
+            }
+
+            tr:nth-child(even) {background-color: #CCCACA;}
+        </style>
+    
         <div id="resultat"></div>
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
@@ -21,26 +35,40 @@
                 url: "http://localhost:8000/gym",
                 dataType: "json",
                 success: function (result, status, xhr) {
-                    var html = ""
+                    var html = "<table class='tabell'>"
+                    
                     for(var i = 0; i < result.data.length; i++){
                         console.log(result.data[i]);
-                        html += "<th>"+result.data[i].firstname+"</th>"+"<th>"+result.data[i].name+"</th>"+"<th>"+result.data[i].result+"</th>"
+
+                        html +=`
+                        <tr><td>${result.data[i].firstname}</td>
+                        <td>
+                        ${result.data[i].lastname}</td>
+                        <td>
+                        ${result.data[i].name}</td>
+                        <td>
+                        ${result.data[i].pdate}</td>
+                        <td>
+                        ${result.data[i].result}
+                        </td></tr>
+                        `
+
+                       
+
+                       // string +=
+                            // "<tr><td>" +
+                            //     result.data[i].firstname +
+                            // "</td><td>" +
+                            //     result.data[i].name +
+                            // "</td></tr>";
+                            // result.data[i].result +
+                            
+                        
                     }
-                    var string = "<table>";
-                    data.data.forEach(gym => {
-                        string +=
-                            "<tr><td>" +
-                            gym.firstname +
-                            "</td><td>" +
-                            gym.name +
-                            "</td></tr>";
-                            gym.result +
-                            "</td></tr>";
-                        console.log(car.make);
-                    });
-                    string += "</table>";
-                    document.getElementById("resultat").innerHTML = string;
-                  document.getElementById("resultat").innerHTML = html
+                 
+                    html += "</table>";
+                    document.getElementById("resultat").innerHTML = html;
+                  //document.getElementById("resultat").innerHTML = html
                 },
                 error: function (xhr, status, error) {
                     alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
