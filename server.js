@@ -45,6 +45,16 @@ app.get("/gym", (req, res, next) => {
         })
       });
   });
+  app.post("/add", (req, res, next) => {
+  console.log(req.body.namn);
+  db.run('INSERT INTO practice VALUES (result)', [req.body.namn]);
+        res.json({
+            "message":"success",
+            
+        })
+     
+  });
+
 
   app.get("/gym", (req, res, next) => {
     var sql = "select * from user practice"
