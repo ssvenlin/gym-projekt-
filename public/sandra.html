@@ -11,7 +11,7 @@
     </head>
     <body>
         <style>
-            table {
+            #tabell {
             border-collapse: collapse;
             width: 100%;
             }
@@ -32,10 +32,12 @@
         <script>
          $.ajax({
                 //type: "POST",
+                
+                 sql: "SELECT users.firstname, users.lastname, users.id, practice.name, practice.pdate, practice.result",
                 url: "http://localhost:8000/gym",
                 dataType: "json",
                 success: function (result, status, xhr) {
-                    var html = "<table class='tabell'>"
+                    var html = "<table id='tabell'>"
                     
                     for(var i = 0; i < result.data.length; i++){
                         console.log(result.data[i]);

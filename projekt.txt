@@ -1,0 +1,11 @@
+SELECT users.id, users.firstname, users.lastname, practice.id, practice.name, practice.pdate, practice.result
+
+FROM users
+
+INNER JOIN user_practice
+
+on user_practice.user_id = users.id
+
+inner join practice
+
+on practice.id = user_practice.id
