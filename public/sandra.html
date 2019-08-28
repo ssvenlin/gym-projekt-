@@ -16,6 +16,9 @@
 
         </form>
         <style>
+            #tr.pos_right {
+                left: 50px;
+            }
             
             #tabell {
             border-collapse: collapse;
@@ -42,7 +45,7 @@
                 url: "http://localhost:8000/gym",
                 dataType: "json",
                 success: function (result, status, xhr) {
-                    var html = "<table id='tabell'>"
+                    var html = "<table id='tabell'><th>Firstname</th>"+"<th>Lastname</th>"+"<th>name</th>"+"<th>date</th>"+"<th>result</th>"
                     
                     for(var i = 0; i < result.data.length; i++){
                         console.log(result.data[i]);
@@ -62,7 +65,7 @@
                         `
                         
                     }
-                    html += "<tr>Firstname</tr>"+"<tr>Lastname</tr>"; 
+                    html += ""; 
                     html += "</table>";
                     document.getElementById("resultat").innerHTML = html;
                   //document.getElementById("resultat").innerHTML = html

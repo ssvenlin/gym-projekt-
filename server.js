@@ -47,13 +47,40 @@ app.get("/gym", (req, res, next) => {
   });
   app.post("/add", (req, res, next) => {
   console.log(req.body.namn);
-  db.run('INSERT INTO practice VALUES (result)', [req.body.namn]);
-        res.json({
-            "message":"success",
-            
-        })
-     
-  });
+  db.run('INSERT INTO practice (result) VALUES ("result")', [], (err, rows) => {
+    if (err) {
+      res.status(400).json({"error":err.message});
+      return;
+    }
+    res.json({
+        "message":"success",
+    })
+  }); 
+});
+app.post("/users", (req, res, next) => {
+  console.log(req.body.namn);
+  db.run('INSERT INTO users (firstname) VALUES ("Sandra")', [], (err, rows) => {
+    if (err) {
+      res.status(400).json({"error":err.message});
+      return;
+    }
+    res.json({
+        "message":"success",
+    })
+  }); 
+});
+app.post("/practice", (req, res, next) => {
+  console.log(req.body.namn);
+  db.run('INSERT INTO practice (name) VALUES ("stångrodd")', [], (err, rows) => {
+    if (err) {
+      res.status(400).json({"error":err.message});
+      return;
+    }
+    res.json({
+        "message":"success",
+    })
+  }); 
+});
 
 
   app.get("/gym", (req, res, next) => {
