@@ -11,6 +11,7 @@
     </head>
     <body>
         <style>
+            
             #tabell {
             border-collapse: collapse;
             width: 100%;
@@ -19,6 +20,7 @@
             th, td {
             text-align: left;
             padding: 8px;
+            padding-right: 10em;
             }
 
             tr:nth-child(even) {background-color: #CCCACA;}
@@ -32,8 +34,6 @@
         <script>
          $.ajax({
                 //type: "POST",
-                
-                 sql: "SELECT users.firstname, users.lastname, users.id, practice.name, practice.pdate, practice.result",
                 url: "http://localhost:8000/gym",
                 dataType: "json",
                 success: function (result, status, xhr) {
@@ -43,7 +43,8 @@
                         console.log(result.data[i]);
 
                         html +=`
-                        <tr><td>${result.data[i].firstname}</td>
+                        <tr>
+                        <td>${result.data[i].firstname}</td>
                         <td>
                         ${result.data[i].lastname}</td>
                         <td>
@@ -54,20 +55,9 @@
                         ${result.data[i].result}
                         </td></tr>
                         `
-
-                       
-
-                       // string +=
-                            // "<tr><td>" +
-                            //     result.data[i].firstname +
-                            // "</td><td>" +
-                            //     result.data[i].name +
-                            // "</td></tr>";
-                            // result.data[i].result +
-                            
                         
                     }
-                 
+                    html += "<tr>Firstname</tr>";
                     html += "</table>";
                     document.getElementById("resultat").innerHTML = html;
                   //document.getElementById("resultat").innerHTML = html
@@ -78,18 +68,7 @@
             });
         
    
-                // Send a GET request
- /*               
-                const listUsers = async () => {
-    try {
-        const res = await axios.get('http://localhost:8000/sandra.html');
-        console.log(res.data.data); 
-    } catch (err) {
-        console.error(err);
-    }
-};
-listUsers();
-             */   
-                </script>
+      
+        </script>
     </body>
 </html>
