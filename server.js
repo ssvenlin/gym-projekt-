@@ -30,7 +30,7 @@ app.get("/gym", (req, res, next) => {
         })
       });
   });
-
+/*
   app.get("/gym", (req, res, next) => {
     var sql = "select * from practice"
     var params = []
@@ -45,18 +45,41 @@ app.get("/gym", (req, res, next) => {
         })
       });
   });
+*/
   app.post("/add", (req, res, next) => {
-  console.log(req.body.namn);
-  db.run('INSERT INTO practice (result) VALUES ("result")', [], (err, rows) => {
+    console.log(req.body.name);
+    var sql = "INSERT INTO practice (name,pdate,result) values(practice)"
+    db.run(sql, [req.body.name,req.body.pdate,req.body.result], function(err) {
+      console.log(this.lastID);
+      
     if (err) {
-      res.status(400).json({"error":err.message});
-      return;
+        res.status(400).json({"error":err.message});
+        return;
     }
+
     res.json({
-        "message":"success",
+    "message":"ratt"
     })
-  }); 
-});
+  });//end of db run
+});//end of post
+  
+  
+
+//   app.post("/add", (req, res, next) => {
+//   console.log("add result" + req.body.result);
+//   db.run('INSERT INTO practice (result) VALUES (?)', [req.body.result], (err, rows) => {
+//     if (err) {
+//       res.status(400).json({"error":err.message});
+//       return;
+//     }
+//     res.json({
+//         "message":"success",
+//     })
+//   }); 
+// });
+
+
+
 app.post("/users", (req, res, next) => {
   console.log(req.body.namn);
   db.run('INSERT INTO users (firstname) VALUES ("Sandra")', [], (err, rows) => {
