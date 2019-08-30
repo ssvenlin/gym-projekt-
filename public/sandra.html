@@ -1,70 +1,55 @@
 <html>
-
     <head>
-        
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-
-          
-
-
-            
-        
-        <!-- <br>
-
-        <input name="name"/>
-        date:
-        <br>
-        <input name="pdate"/>
-        result:
-        <br>
-        <input name="result"/>
-        
-        <input type="submit" value="submit"/>   
-        
-        </form> -->
-        <style>
-            input[type=text], select {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #CCCACA;;
-            border-radius: 4px;
-            box-sizing: border-box;
-            }   
-            
-            #tr.pos_right {
-                left: 50px;
-            }
-            
-            #tabell {
-            border-collapse: collapse;
-            width: 100%;
-            }
-
-            th, td {
-            text-align: left;
-            padding: 8px;
-            padding-right: 10em;
-            }
-
-            tr:nth-child(even) {background-color: #CCCACA;}
-        </style>
-    
-        <div id="resultat"></div>
-        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="">
+        <style>
+                input[type=text], select {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #CCCACA;;
+                border-radius: 4px;
+                box-sizing: border-box;
+                }   
+                
+                #button {
+                    margin-right: 70px;
+                }
+                
+                #tabell {
+                border-collapse: collapse;
+                width: 100%;
+                }
+    
+                th, td {
+                text-align: left;
+                padding: 8px;
+                padding-right: 10em;
+                }
+    
+                tr:nth-child(even) {background-color: #CCCACA;}
+            </style>
+    </head>
+    <body>
+          
+        
+      
+    
+        <div id="resultat"></div>
+        
+        
         <script>
          $.ajax({
+       
                 //type: "POST",
                 url: "http://localhost:8000/gym",
                 dataType: "json",
@@ -85,7 +70,11 @@
                         ${result.data[i].pdate}</td>
                         <td>
                         ${result.data[i].result}
-                        </td></tr>
+                        </td>
+                        <td><button onclick="javascript:deleter(${result.data[i].id})">DELETE</button></td>
+                        </tr>
+
+                       
                         `
                         
                     }
@@ -98,12 +87,26 @@
                     alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
                 }
             });
+            function deleter(id){
+                     console.log("delete" + id);
+
+                     $.ajax({
+                     url: "http://localhost:8000/deleter/"+id,
+                     dataType: "json",
+                     success: function (result, status, xhr) {
+                         console.log("funkkar");
+                         
+                        }
+                     })
+                     console.log("end");
+                     
+                    }
+                     
   
-        </script>
-    </body>
-    <body>
-        <br>
-        <br>
+  
+        </script> 
+   
+      
             <div>
                     <form method = "post" action="http://localhost:8000/add">
                       <label for="name">Namn</label>

@@ -17,7 +17,7 @@ app.use(express.static('public'))
 
 app.get("/gym", (req, res, next) => {
     //var sql = "select * from users"
-    var sql = "SELECT users.firstname, users.lastname, practice.name, practice.pdate, practice.result FROM users INNER JOIN user_practice on user_practice.user_id = users.id inner join practice on practice.id = user_practice.id"
+    var sql = "SELECT users.id, users.firstname, users.lastname, practice.name, practice.pdate, practice.result FROM users INNER JOIN user_practice on user_practice.user_id = users.id inner join practice on practice.id = user_practice.id"
     var params = []
     db.all(sql, params, (err, rows) => {
         if (err) {
@@ -62,6 +62,25 @@ app.get("/gym", (req, res, next) => {
     })
   });//end of db run
 });//end of post
+
+app.get("/deleter/:id", (req, res, next) => {
+ console.log("id" + req.params.id)
+ var id="req.params.id, practice.name"
+ db.run(`DELETE FROM practice WHERE id=?`, id, function(err) {
+  if (err) {
+    return console.error(err.message);
+  }
+
+
+
+ res.json({
+           "message":"success"
+      })
+    });
+
+
+
+
   
   
 
@@ -125,3 +144,4 @@ app.post("/practice", (req, res, next) => {
 app.get("/", (req, res, next) => {
     res.json({"message":"Ok"})
 });
+})
